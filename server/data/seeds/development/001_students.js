@@ -1,6 +1,6 @@
 const faker = require("faker");
 
-const create = (id) => ({
+const create = () => ({
 	firstname: faker.name.firstName(),
 	lastname: faker.name.lastName(),
 	student_email: faker.internet.email(),
@@ -10,8 +10,8 @@ const create = (id) => ({
 exports.seed = async function (knex, Promise) {
 	const students = [];
 
-	for (let i = 1; i < 11; i++) {
-		students.push(create(i));
+	for (let i = 0; i < 10; i++) {
+		students.push(create());
 	}
 
 	await knex.raw("TRUNCATE TABLE students RESTART IDENTITY CASCADE");

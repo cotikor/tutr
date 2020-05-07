@@ -1,4 +1,3 @@
-const db = require("../../../config/dbConfig.js");
 const studentsHelper = require("../studentsHelper.js");
 
 describe("GET query to students db", () => {
