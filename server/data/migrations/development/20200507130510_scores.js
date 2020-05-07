@@ -1,6 +1,6 @@
 exports.up = function (knex, Promise) {
 	return knex.schema.createTable("scores", (tbl) => {
-		tbl.increments();
+		tbl.increments("id").primary().unsigned();
 		tbl
 			.integer("quiz_id")
 			.unsigned()

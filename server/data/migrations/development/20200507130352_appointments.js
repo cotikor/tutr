@@ -1,8 +1,7 @@
 exports.up = function (knex, Promise) {
 	return knex.schema.createTable("appointments", (tbl) => {
-		tbl.increments();
-		tbl.date("date").notNullable();
-		tbl.time("time").notNullable();
+		tbl.increments("id").primary().unsigned();
+		tbl.datetime("datetime").notNullable();
 		tbl
 			.integer("student_id")
 			.unsigned()

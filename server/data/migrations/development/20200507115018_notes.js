@@ -1,6 +1,8 @@
+
+
 exports.up = function (knex, Promise) {
 	return knex.schema.createTable("notes", (tbl) => {
-		tbl.increments();
+		tbl.increments("id").primary().unsigned();
 		tbl
 			.integer("student_id")
 			.unsigned()
@@ -10,6 +12,7 @@ exports.up = function (knex, Promise) {
 			.onUpdate("CASCADE")
 			.notNullable();
 		tbl.text("note").notNullable();
+		tbl.datetime("datetime").notNullable()
 	});
 };
 

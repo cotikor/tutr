@@ -1,6 +1,6 @@
 exports.up = function (knex, Promise) {
 	return knex.schema.createTable("quizzes", (tbl) => {
-		tbl.increments();
+		tbl.increments("id").primary().unsigned();
 		tbl.text("question").notNullable();
 		tbl.text("answer_a").notNullable();
 		tbl.text("answer_b").notNullable();
