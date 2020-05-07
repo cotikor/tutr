@@ -1,7 +1,7 @@
 const studentsHelper = require("../studentsHelper.js");
 
 describe("GET query to students db", () => {
-	it("should return all 10 students", async (done) => {
+	it("should return all 10 seeded students", async (done) => {
 		const allStudents = await studentsHelper.getAll();
 		expect(allStudents).toHaveLength(10);
 		done();

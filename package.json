@@ -7,10 +7,11 @@
   "author": "Chaya Otikor <c.otikor@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "(knex migrate:rollback && knex migrate:latest && knex seed:run) && cross-env ENVIRONMENT=development jest --verbose --watch",
-    "develop": "cross-env ENVIRONMENT=development nodemon index.js",
+    "test": "(knex migrate:rollback && knex migrate:latest && knex seed:run) && cross-env NODE_ENV=development jest --verbose --watch",
+    "develop": "cross-env NODE_ENV=development nodemon index.js",
     "reload": "(knex migrate:rollback && knex migrate:latest && knex seed:run) && yarn develop",
-    "start": "node index.js"
+    "start": "node index.js",
+    "rollback": "knex migrate:rollback"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,7 @@
     "helmet": "^3.22.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.1",
+    "moment": "^2.25.3",
     "morgan": "^1.10.0",
     "pg": "^8.0.3"
   },
