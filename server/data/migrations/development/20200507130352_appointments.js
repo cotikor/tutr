@@ -7,7 +7,7 @@ exports.up = function (knex, Promise) {
 			.unsigned()
 			.references("id")
 			.inTable("students")
-			.onDelete("RESTRICT")
+			.onDelete("CASCADE")
 			.onUpdate("CASCADE")
 			.notNullable();
 		tbl
@@ -15,7 +15,7 @@ exports.up = function (knex, Promise) {
 			.unsigned()
 			.references("id")
 			.inTable("subjects")
-			.onDelete("RESTRICT")
+			.onDelete("CASCADE")
 			.onUpdate("CASCADE")
 			.notNullable();
 		tbl
@@ -23,7 +23,7 @@ exports.up = function (knex, Promise) {
 			.unsigned()
 			.references("id")
 			.inTable("notes")
-			.onDelete("RESTRICT")
+			.onDelete("CASCADE")
 			.onUpdate("CASCADE");
 	});
 };

@@ -11,7 +11,7 @@ exports.up = function (knex, Promise) {
 			.unsigned()
 			.references("id")
 			.inTable("subjects")
-			.onDelete("RESTRICT")
+			.onDelete("CASCADE")
 			.onUpdate("CASCADE")
 			.notNullable();
 	});
