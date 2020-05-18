@@ -8,7 +8,7 @@ exports.up = function (knex, Promise) {
 			.unsigned()
 			.references("id")
 			.inTable("students")
-			.onDelete("RESTRICT")
+			.onDelete("CASCADE")
 			.onUpdate("CASCADE")
 			.notNullable();
 		tbl.text("note").notNullable();
