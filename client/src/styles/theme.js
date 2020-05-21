@@ -10,7 +10,7 @@ breakpoint values {xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920}
 */
 export default createMuiTheme({
 	typography: {
-		htmlFontSize: 10,
+    h6: "1.2rem",
 		useNextVariants: true,
 		body1: { color: "inherit" },
 		body2: { color: "inherit" },

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Route, withRouter } from "react-router-dom";
+import {Dashboard} from './components'
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/core/styles";
 
 
@@ -20,37 +20,40 @@ const styles = (theme) => ({
 const App = (props) => {
 	const { classes } = props;
 	  useEffect(() => {
-		getStudents()
+		  getStudents()
 		}, []);
 
-	/* STATE */
+/* STATE */
 	const [students, setStudents] = useState([])
 /* METHODS */
+	
+/* STUDENTS */	
 	  const getStudents = () => {
 			axios({
 				method: "get",
 				url: `http://localhost:9000/students`
 			})
 				.then((res) => {
-					console.log(res.data)
 					setStudents(res.data.students);
 				})
 				.catch((err) => console.log(err));
-		};
+	};
 
+/*APPOINTMENTS */
 
-	/* ROUTES */
+/* ROUTES */
 	return (
+		console.log('students', students),
 		<>
-			<Grid
-				container
-				className={classes.container}
-			>
-				<Paper>
-					{students.map((student) => (
-						<p>{student.firstname}</p>
-					))}
-				</Paper>
+			<Grid container className={classes.container}>
+				<Route
+					path="/dashboard"
+					render={(props) => (
+						<Dashboard
+							students={students}
+						/>
+					)}
+				/>
 			</Grid>
 		</>
 	);
