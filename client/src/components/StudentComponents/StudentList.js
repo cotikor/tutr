@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
@@ -14,17 +15,18 @@ const styles = (theme) => ({
 	},
 });
 
-const StudentList = ({classes, students}) => {
+const StudentList = ({ classes, students }) => {
+	
     return (
 			<Paper className={classes.container} elevation={24}>
-            {students.map((student) => (
-                <Typography
-                        key={student.id}
+			{students.map((student) => (
+					<Typography
+						key={student.id}
 						variant="h6"
 						color="secondary"
 						style={{ textAlign: "center" }}
 					>
-						{`${student.firstname} ${student.lastname}`}
+						<Link to={`/students/${student.id}`}>{`${student.firstname} ${student.lastname}`}</Link>
 					</Typography>
 				))}
 			</Paper>
