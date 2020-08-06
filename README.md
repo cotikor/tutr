@@ -1,20 +1,12 @@
-# [Tutr App Backend]
+# Tutr
 
-- [App Client Home]
-- [Backend Base URL]
-
----
-
-## Additional Documentation
-
-[Frontend Documentation](https://github.com/cotikor/tutr/blob/master/client/README.md).
-
-
-
-
-## Endpoints
-### Sanity Check
-* GET /sanity
-  * returns object with message "Sanity Check"
+*A mobile application that helps tutors manage their students*
 
 ---
+
+## Tech Stack
+
+- Flutter
+- Node + Express
+- PostgreSQL
+- Material UI
