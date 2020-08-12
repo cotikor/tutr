@@ -8,7 +8,8 @@ module.exports = {
 		client: "pg",
 		connection: {
 			host: "127.0.0.1",
-			user: "cotikor",
+			user: "postgres",
+			password: process.env.PG_PASSWORD,
 			database: "tutr_dev",
 		},
 		migrations: {
