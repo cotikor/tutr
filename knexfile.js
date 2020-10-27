@@ -13,10 +13,10 @@ module.exports = {
 			database: "tutr_dev",
 		},
 		migrations: {
-			directory: "./server/data/migrations/development",
+			directory: "./data/migrations/development",
 		},
 		seeds: {
-			directory: "./server/data/seeds/development",
+			directory: "./data/seeds/development",
 		},
 		useNullAsDefault: true,
 	},
@@ -30,10 +30,10 @@ module.exports = {
 			max: 10,
 		},
 		migrations: {
-			directory: "./server/data/migrations/production",
+			directory: "./data/migrations/production",
 		},
 		seeds: {
-			directory: "./server/data/seeds/production",
+			directory: "./data/seeds/production",
 		},
 	},
 };
