@@ -18,13 +18,6 @@ exports.up = function (knex, Promise) {
 			.onDelete("CASCADE")
 			.onUpdate("CASCADE")
 			.notNullable();
-		tbl
-			.integer("note_id")
-			.unsigned()
-			.references("id")
-			.inTable("notes")
-			.onDelete("CASCADE")
-			.onUpdate("CASCADE");
 	});
 };
 
