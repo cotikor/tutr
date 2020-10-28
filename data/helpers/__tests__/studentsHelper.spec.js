@@ -10,7 +10,7 @@ describe("GET query to students db", () => {
 	it("should return 1 student", async (done) => {
 		const students = await studentsHelper.getStudent(1);
 		expect(Object.keys(students).sort()).toEqual(
-			["id", "firstname", "lastname", "student_email", "secondary_email"].sort()
+			["id", "firstname", "lastname", "student_email", "secondary_email", 'notes', 'appointments'].sort()
 		);
 		done();
 	});

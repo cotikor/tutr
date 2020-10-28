@@ -29,7 +29,6 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
 	const { body } = req;
-	console.log(body);
 	try {
 		const newStudentID = await db.addStudent(body);
 		res.status(responseStatus.postCreated).json({ newStudentID });

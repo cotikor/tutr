@@ -23,20 +23,16 @@ module.exports = {
     return Promise.all([note, student]).then((response) => {
       let [note, student] = response;
       let result = {
-          id: note.id,
-		  student: {
-			name: `${student.firstname} ${student.lastname}`,
-			student_id: note.student_id
-		  },
-          details: note.details,
-          updated_at: DateTime.fromJSDate(note.updated_at).toLocaleString({
-            weekday: "short",
-            month: "short",
-            day: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit",
-          }),
-	  };
+        id: note.id,
+        student: {
+          name: `${student.firstname} ${student.lastname}`,
+          student_id: note.student_id,
+        },
+        details: note.details,
+        updated_at: DateTime.fromJSDate(note.updated_at).toLocaleString(
+          DateTime.DATETIME_SHORT
+        ),
+      };
       return result;
     });
   },

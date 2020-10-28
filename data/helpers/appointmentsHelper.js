@@ -24,41 +24,27 @@ module.exports = {
       .join("appointments", "notes.student_id", "appointments.student_id")
       .where("appointments.id", id)
 
-    const subject = await db("subjects")
-      .select("subjects.subject")
-      .join("appointments", "subjects.id", "appointments.subject_id")
-      .where("appointments.id", id)
-      .first();
-
-    return Promise.all([appointment, student, notes, subject]).then(
+    return Promise.all([appointment, student, notes]).then(
       (response) => {
-        let [appointment, student, notes, subject] = response;
+        let [appointment, student, notes] = response;
         let result = {
-          date: DateTime.fromJSDate(appointment.date).toLocaleString({
-            weekday: "short",
-            month: "short",
-            day: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit",
-          }),
+          subject: appointment.subject,
+          date: DateTime.fromJSDate(appointment.date).toLocaleString(
+            DateTime.DATETIME_SHORT
+          ),
           student: {
             name: `${student.firstname} ${student.lastname}`,
             email: student.student_email,
             parent_email: student.secondary_email,
             student_id: appointment.student_id,
           },
-          subject: subject.subject,
-          notes: notes.map(note => {
+          notes: notes.map((note) => {
             return {
               note_id: note.note_id,
               details: note.details,
-              updated_at: DateTime.fromJSDate(note.updated_at).toLocaleString({
-                weekday: "short",
-                month: "short",
-                day: "2-digit",
-                hour: "2-digit",
-                minute: "2-digit",
-              }),
+              updated_at: DateTime.fromJSDate(note.updated_at).toLocaleString(
+                DateTime.DATETIME_SHORT
+              ),
             };
           }),
         };

@@ -23,6 +23,8 @@ describe("students routes", () => {
 					lastname: expect.any(String),
 					student_email: expect.any(String),
 					secondary_email: expect.any(String),
+					notes: expect.any(Array),
+					appointments: expect.any(Array)
 				},
 			});
 			const response = await request(server).get("/students/1");

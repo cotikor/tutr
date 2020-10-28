@@ -34,7 +34,7 @@ describe("appointments routes", () => {
       const appointment = {
         date: faker.date.between("2020-05-31", "2020-12-31"),
         student_id: 4,
-        subject_id: 5,
+        subject: "Calculus",
       };
       const response = await request(server)
         .post("/appointments")
@@ -52,7 +52,7 @@ describe("appointments routes", () => {
     it("should update an appointment", async () => {
       const body = {
         student_id: 7,
-        subject_id: 4,
+        subject: "English",
       };
       const response = await request(server).put("/appointments/1").send(body);
       expect(response.body).toEqual({ updatedRecords: 1 });

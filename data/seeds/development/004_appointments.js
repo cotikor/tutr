@@ -1,9 +1,9 @@
 const faker = require("faker");
 
 const create = () => ({
-	date: faker.date.between('2020-05-31', '2020-12-31'),
+	date: faker.date.future(1),
 	student_id: faker.random.number({ min: 1, max: 9 }),
-	subject_id: faker.random.number({ min: 1, max: 19 }),
+	subject: faker.hacker.ingverb(),
 });
 
 exports.seed = async function (knex, Promise) {
