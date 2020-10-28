@@ -11,8 +11,8 @@ exports.up = function (knex, Promise) {
 			.onDelete("CASCADE")
 			.onUpdate("CASCADE")
 			.notNullable();
-		tbl.text("note").notNullable();
-		tbl.datetime("datetime").notNullable()
+		tbl.text("details").notNullable();
+		tbl.datetime("updatedAt").notNullable()
 	});
 };
 

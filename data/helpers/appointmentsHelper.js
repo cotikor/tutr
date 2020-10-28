@@ -1,4 +1,5 @@
 const db = require("../../config/dbConfig");
+const { DateTime } = require("luxon");
 
 module.exports = {
   getAll: async () => {
@@ -15,16 +16,13 @@ module.exports = {
   getAppointment: async (id) => {
     const appointment = await db("appointments").where({ id }).first();
     const student = await db("students")
-      .select(
-        "students.firstname",
-        "students.lastname",
-        "students.student_email",
-        "students.id"
-      )
       .join("appointments", "students.id", "appointments.student_id")
       .where("appointments.id", id)
       .first();
-    const notes = await db("notes");
+    
+    const notes = await db("notes").select('notes.updatedAt', 'notes.details', 'notes.id as note_id')
+      .join("appointments", "notes.student_id", "appointments.student_id")
+      .where("appointments.id", id)
 
     const subject = await db("subjects")
       .select("subjects.subject")
@@ -36,17 +34,32 @@ module.exports = {
       (response) => {
         let [appointment, student, notes, subject] = response;
         let result = {
-          date: appointment.datetime,
+          date: DateTime.fromJSDate(appointment.date).toLocaleString({
+            weekday: "short",
+            month: "short",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
           student: {
             name: `${student.firstname} ${student.lastname}`,
             email: student.student_email,
-            student_id: student.id,
+            parent_email: student.secondary_email,
+            student_id: appointment.student_id,
           },
           subject: subject.subject,
-          notes: notes.filter((note) => {
-            if (note.student_id === student.id) {
-              return { note };
-            }
+          notes: notes.map(note => {
+            return {
+              note_id: note.note_id,
+              details: note.details,
+              updatedAt: DateTime.fromJSDate(note.updatedAt).toLocaleString({
+                weekday: "short",
+                month: "short",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+              }),
+            };
           }),
         };
         return result;
