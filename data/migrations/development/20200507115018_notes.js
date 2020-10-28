@@ -12,7 +12,7 @@ exports.up = function (knex, Promise) {
 			.onUpdate("CASCADE")
 			.notNullable();
 		tbl.text("details").notNullable();
-		tbl.datetime("updatedAt").notNullable()
+		tbl.timestamp("updated_at", { useTz: true }).defaultTo(knex.fn.now());
 	});
 };
 

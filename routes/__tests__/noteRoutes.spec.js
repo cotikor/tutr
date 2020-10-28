@@ -1,6 +1,5 @@
 const request = require("supertest");
 const server = require("../../api/server.js");
-const moment = require("moment");
 
 describe("notes routes", () => {
 	describe("GET all notes", () => {
@@ -20,9 +19,9 @@ describe("notes routes", () => {
 			const expectedShape = expect.objectContaining({
 				note: {
 					id: expect.any(Number),
-					datetime: expect.any(String),
-					student_id: expect.any(Number),
-					note: expect.any(String),
+					updated_at: expect.any(String),
+					student: expect.any(Object),
+					details: expect.any(String),
 				},
 			});
 			const response = await request(server).get("/notes/1");
@@ -32,10 +31,9 @@ describe("notes routes", () => {
 	describe("POST note", () => {
 		it("should add a note", async () => {
 			const note = {
-				datetime: moment().format(),
-				student_id: 4,
-				note: "testing new note",
-			};
+        student_id: 4,
+        details: "testing new note",
+      };
 			const response = await request(server)
 				.post("/notes")
 				.send(note);
@@ -52,7 +50,7 @@ describe("notes routes", () => {
 		it("should update a note", async () => {
 			const body = {
 				student_id: 7,
-				note: "testing note update",
+				details: "testing note update",
 			};
 			const response = await request(server).put("/notes/1").send(body);
 			expect(response.body).toEqual({ updatedRecords: 1 });

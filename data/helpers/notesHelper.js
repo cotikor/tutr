@@ -28,8 +28,8 @@ module.exports = {
 			name: `${student.firstname} ${student.lastname}`,
 			student_id: note.student_id
 		  },
-          note: note.details,
-          updatedAt: DateTime.fromJSDate(note.updatedAt).toLocaleString({
+          details: note.details,
+          updated_at: DateTime.fromJSDate(note.updated_at).toLocaleString({
             weekday: "short",
             month: "short",
             day: "2-digit",

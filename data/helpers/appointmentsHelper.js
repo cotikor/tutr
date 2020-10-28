@@ -20,7 +20,7 @@ module.exports = {
       .where("appointments.id", id)
       .first();
     
-    const notes = await db("notes").select('notes.updatedAt', 'notes.details', 'notes.id as note_id')
+    const notes = await db("notes").select('notes.updated_at', 'notes.details', 'notes.id as note_id')
       .join("appointments", "notes.student_id", "appointments.student_id")
       .where("appointments.id", id)
 
@@ -52,7 +52,7 @@ module.exports = {
             return {
               note_id: note.note_id,
               details: note.details,
-              updatedAt: DateTime.fromJSDate(note.updatedAt).toLocaleString({
+              updated_at: DateTime.fromJSDate(note.updated_at).toLocaleString({
                 weekday: "short",
                 month: "short",
                 day: "2-digit",
