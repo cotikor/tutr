@@ -22,9 +22,9 @@ describe("students routes", () => {
 					firstname: expect.any(String),
 					lastname: expect.any(String),
 					student_email: expect.any(String),
-					secondary_email: expect.any(String),
+					parent_email: expect.any(String),
 					notes: expect.any(Array),
-					appointments: expect.any(Array)
+					upcomingAppointments: expect.any(Array)
 				},
 			});
 			const response = await request(server).get("/students/1");
@@ -37,7 +37,7 @@ describe("students routes", () => {
 				firstname: "testfirst",
 				lastname: "testlast",
 				student_email: "testingstudent@mail.com",
-				secondary_email: "testingsecondary@mail.com",
+				parent_email: "testingsecondary@mail.com",
 			};
 			const response = await request(server).post("/students").send(student);
 			expect(response.status).toBe(201);

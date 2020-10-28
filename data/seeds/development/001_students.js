@@ -4,7 +4,7 @@ const create = () => ({
 	firstname: faker.name.firstName(),
 	lastname: faker.name.lastName(),
 	student_email: faker.internet.email(),
-	secondary_email: faker.internet.email(),
+	parent_email: faker.internet.email(),
 });
 
 exports.seed = async function (knex, Promise) {

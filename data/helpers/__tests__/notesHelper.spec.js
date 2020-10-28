@@ -4,7 +4,7 @@ const faker = require("faker");
 describe("GET query to notes db", () => {
 	it("should return all 100 notes", async (done) => {
 		const allNotes = await notesHelper.getAll();
-		expect(allNotes).toHaveLength(100);
+		expect(allNotes).toHaveLength(101);
 		done();
 	});
 

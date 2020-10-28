@@ -15,10 +15,10 @@ module.exports = {
 
   getNote: async (id) => {
     const note = await db("notes").where({ id }).first();
-        const student = await db("students")
-          .join("notes", "students.id", "notes.student_id")
-          .where("notes.id", id)
-          .first();
+    const student = await db("students")
+      .join("notes", "students.id", "notes.student_id")
+      .where("notes.id", id)
+      .first();
 
     return Promise.all([note, student]).then((response) => {
       let [note, student] = response;

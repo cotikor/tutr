@@ -10,7 +10,7 @@ describe("GET query to students db", () => {
 	it("should return 1 student", async (done) => {
 		const students = await studentsHelper.getStudent(1);
 		expect(Object.keys(students).sort()).toEqual(
-			["id", "firstname", "lastname", "student_email", "secondary_email", 'notes', 'appointments'].sort()
+			["id", "firstname", "lastname", "student_email", "parent_email", 'notes', 'upcomingAppointments'].sort()
 		);
 		done();
 	});
@@ -22,7 +22,7 @@ describe("INSERT query to students db", () => {
 			firstname: "Jane",
 			lastname: "Doe",
 			student_email: "jdoe@abc.com",
-			secondary_email: "parentdoe@abc.com",
+			parent_email: "parentdoe@abc.com",
 		});
 		expect(id).toEqual(11);
 		done();
@@ -35,7 +35,7 @@ describe("UPDATE query to students db", () => {
 			firstname: "Jane",
 			lastname: "Doe",
 			student_email: "test@abc.com",
-			secondary_email: "parentdoe@abc.com",
+			parent_email: "parentdoe@abc.com",
 		});
 		const updated = await studentsHelper.getStudent(11);
 
@@ -50,7 +50,7 @@ describe("DELETE query to students db", () => {
 			firstname: "testfirst",
 			lastname: "testlast",
 			student_email: "test_email@email.com",
-			secondary_email: "parenttest@email.com",
+			parent_email: "parenttest@email.com",
 		});
 		const count = await studentsHelper.deleteStudent(id);
 

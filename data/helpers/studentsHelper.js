@@ -1,7 +1,6 @@
 const db = require("../../config/dbConfig");
 const { DateTime } = require("luxon");
 
-
 module.exports = {
   getAll: async () => {
     const allStudents = await db("students");
@@ -23,12 +22,12 @@ module.exports = {
 
     return Promise.all([appointments, student, notes]).then((response) => {
       let [appointments, student, notes] = response;
-		let result = {
-		  id: student.id,
-		  firstname: student.firstname,
-		  lastname: student.lastname,
-          student_email: student.student_email,
-			parent_email: student.secondary_email,
+      let result = {
+        id: student.id,
+        firstname: student.firstname,
+        lastname: student.lastname,
+        student_email: student.student_email,
+        parent_email: student.parent_email,
         notes: notes.map((note) => {
           return {
             note_id: note.note_id,
@@ -49,7 +48,6 @@ module.exports = {
       };
       return result;
     });
-
   },
 
   addStudent: async (student) => {

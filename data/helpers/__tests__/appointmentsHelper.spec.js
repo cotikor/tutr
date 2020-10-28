@@ -33,12 +33,12 @@ describe("UPDATE query to appointments db", () => {
   it("should update appointment with specified ID", async (done) => {
     appointmentsHelper.updateAppointment(21, {
       student_id: 1,
-      subject: 'Chemistry',
+      subject: "Chemistry",
       date: faker.date.between("2020-12-31", "2021-6-30"),
     });
     const updated = await appointmentsHelper.getAppointment(21);
 
-    expect(updated.subject).toEqual('Chemistry');
+    expect(updated.subject).toEqual("Chemistry");
     done();
   });
 });
@@ -47,7 +47,7 @@ describe("DELETE query to appointments db", () => {
   it("should return a count of 1 when deleting specified appointment", async (done) => {
     const id = await appointmentsHelper.addAppointment({
       student_id: 5,
-      subject: 'Physics',
+      subject: "Physics",
       date: faker.date.between("2020-12-31", "2021-6-30"),
     });
     const count = await appointmentsHelper.deleteAppointment(id);
