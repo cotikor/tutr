@@ -142,7 +142,6 @@
           }
         }
     ```
-
   * **Error Response:**
 
 
@@ -183,8 +182,8 @@
 
       ```
       {
-        student_id=[integer]
-        subject=[string]
+        student_id=[integer],
+        subject=[string],
         date=[ISOString]
       }
       ```
@@ -245,8 +244,8 @@
 
       ```
       {
-        student_id=[integer]
-        subject=[string]
+        student_id=[integer],
+        subject=[string],
         date=[ISOString]
       }
       ```
@@ -273,7 +272,7 @@
         url: `${process.env.DB_URL}/appointments/1`,
         data: {
           student_id: 2,
-          subject: "Geometry"
+          subject: "Geometry",
           date: "2020-11-02T22:35:26.936Z"
         }
       })
@@ -333,4 +332,380 @@
           console.log(err);
         });
     ```
+----
+## Students
+  ### Get All Students
+  - Returns json data containing an array all of the tutor's students including the ID of the student, the firstname, the lastname, the student's email, and the parent's email.
+
+  * **URL**
+
+    `/students`
+
+  * **Method:**
+
+    `GET`
+
+  *  **URL Params**
+
+     **Required:**
+
+     None
+
+  * **Data Params**
+
+    None
+
+  * **Success Response:**
+
+    * **Code:** 200 <br />
+      **Content:** 
+      ```
+        {
+          "students": [
+              {
+                  "id": 1,
+                  "firstname": "Isabell",
+                  "lastname": "Borer",
+                  "student_email": "Gust80@gmail.com",
+                  "parent_email": "Ethan_Strosin45@hotmail.com"
+              },
+              {
+                  "id": 2,
+                  "firstname": "Peter",
+                  "lastname": "Schumm",
+                  "student_email": "Breanna42@hotmail.com",
+                  "parent_email": "Skye_Ortiz@yahoo.com"
+              },
+              {
+                  "id": 3,
+                  "firstname": "Vicenta",
+                  "lastname": "Vandervort",
+                  "student_email": "Ford_Johns@hotmail.com",
+                  "parent_email": "Destinee72@gmail.com"
+              },
+              {
+                  "id": 4,
+                  "firstname": "Gerda",
+                  "lastname": "Fadel",
+                  "student_email": "Jennie42@yahoo.com",
+                  "parent_email": "Rosalinda9@hotmail.com"
+              },
+              {
+                  "id": 5,
+                  "firstname": "Jayce",
+                  "lastname": "Harris",
+                  "student_email": "Ronaldo_Anderson@hotmail.com",
+                  "parent_email": "Ernestine29@yahoo.com"
+              },
+              {
+                  "id": 6,
+                  "firstname": "Keaton",
+                  "lastname": "Rice",
+                  "student_email": "Shanie.Bogisich@yahoo.com",
+                  "parent_email": "Cletus_Kris@gmail.com"
+              },
+              {
+                  "id": 7,
+                  "firstname": "Rhiannon",
+                  "lastname": "Stoltenberg",
+                  "student_email": "Art_Gutkowski62@hotmail.com",
+                  "parent_email": "Henderson_Bartell@gmail.com"
+              },
+              {
+                  "id": 8,
+                  "firstname": "Jessyca",
+                  "lastname": "Batz",
+                  "student_email": "Kale.Lesch32@gmail.com",
+                  "parent_email": "Anabel84@yahoo.com"
+              },
+              {
+                  "id": 9,
+                  "firstname": "Magdalena",
+                  "lastname": "Wolf",
+                  "student_email": "Talia98@yahoo.com",
+                  "parent_email": "Leda_Trantow84@yahoo.com"
+              },
+              {
+                  "id": 10,
+                  "firstname": "Esperanza",
+                  "lastname": "Grimes",
+                  "student_email": "Emile.King62@hotmail.com",
+                  "parent_email": "Noe50@hotmail.com"
+              }
+          ]
+        }
+      ```
+  * **Error Response:**
+
+
+
+  * **Sample Call Using Axios:**
+
+      ```javascript
+        axios({
+          method: "get",
+          url: `${process.env.DB_URL}/students`,
+        })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+       ```
+  ----
+   ### Get Student By ID
+   - Returns json data information about a single student including the ID, firstname, lastname, student email, parent email, an array of session notes associated with the student, and an array of upcoming appointments.
+
+  * **URL**
+
+    `/student/:id`
+
+  * **Method:**
+
+    `GET`
+
+  *  **URL Params**
+
+     **Required:**
+
+      `id=[integer]`
+
+  * **Data Params**
+
+    None
+
+  * **Success Response:**
+
+    * **Code:** 200 <br />
+      **Content:** 
+      ```
+        {
+          "student": {
+              "id": 1,
+              "firstname": "Isabell",
+              "lastname": "Borer",
+              "student_email": "Gust80@gmail.com",
+              "parent_email": "Ethan_Strosin45@hotmail.com",
+              "notes": [
+                  {
+                      "note_id": 1,
+                      "details": "Deleniti reprehenderit ut sunt sit qui nam voluptatem ratione qui dolores quasi laborum praesentium nemo voluptatibus natus commodi ratione aut id iste ut quasi voluptas incidunt nobis consequatur velit ut laborum illum animi iste fugit itaque qui nisi eum nihil officiis aut provident repudiandae laboriosam adipisci ipsam numquam excepturi nisi.",
+                      "updated_at": "11/2/2020, 2:51 PM"
+                  },
+                  {
+                      "note_id": 16,
+                      "details": "Veniam sit quo qui ab fugit voluptas voluptatem animi voluptas odit laboriosam vitae dicta rerum asperiores ad fuga magnam in tempore vel atque architecto eum ipsa velit non est omnis qui nemo ea ut alias dolor beatae eos est fugiat et et doloribus totam aut quas voluptatem est et explicabo.",
+                      "updated_at": "11/2/2020, 2:51 PM"
+                  }, 
+              ],
+              "upcomingAppointments": [
+                  {
+                      "subject": "overriding",
+                      "date": "9/24/2021, 9:26 AM"
+                  },
+                  {
+                      "subject": "overriding",
+                      "date": "4/16/2021, 6:56 PM"
+                  },
+                  {
+                      "subject": "navigating",
+                      "date": "3/1/2021, 12:29 PM"
+                  }
+              ]
+         }
+      ```
+
+  * **Error Response:**
+
+
+
+  * **Sample Call Using Axios:**
+
+     ```javascript
+      axios({
+        method: "get",
+        url: `${process.env.DB_URL}/students/1`,
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+     ```
+    ----
+   ### Add a New Studnet
+   - Adds a new student and returns the id of the created student 
+
+  * **URL**
+
+      `/students`
+
+  * **Method:**
+
+      `POST`
+
+  *  **URL Params**
+
+     **Required:**
+
+      none
+
+  * **Data Params**
+
+      ```
+      {
+          firstname = [string],
+          lastname = [string],
+          student_email = [string],
+          parent_email = [string]  
+      }
+      ```
+
+  * **Success Response:**
+
+    * **Code:** 200 <br />
+      **Content:** 
+      ```
+        {
+            "newStudentID": 11
+        }
+      ```
+
+  * **Error Response:**
+
+
+
+  * **Sample Call Using Axios:**
+
+      ```javascript
+      axios({
+        method: "POST",
+        url: `${process.env.DB_URL}/students`,
+        data: {
+          "firstname": "Jill",
+          "lastname": "Smith",
+          "student_email": "jillsmith@email.com",
+          "parent_email": "joanne.smith@email.com"
+        }
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    ```
+
+   ----
+   ### Update Appointment By ID
+   - Updates the student associated with the given ID and upon success returns an updated count of 1. 
+
+  * **URL**
+
+      `/students/:id`
+
+  * **Method:**
+
+      `PUT`
+
+  *  **URL Params**
+
+     **Required:**
+
+      `id=[integer]`
+
+  * **Data Params**
+
+      ```
+      {
+          firstname = [string],
+          lastname = [string],
+          student_email = [string],
+          parent_email = [string]  
+      }
+      ```
+
+  * **Success Response:**
+
+    * **Code:** 200 <br />
+      **Content:** 
+      ```
+      {
+          "updatedRecords": 1
+      }
+      ```
+
+  * **Error Response:**
+
+
+
+  * **Sample Call Using Axios:**
+
+      ```javascript
+      axios({
+        method: "put",
+        url: `${process.env.DB_URL}/appointments/1`,
+        data: {
+          "student_email": "jillsmith1990@email.com"
+        }
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    ```
+     ----
+   ### Delete Appointment By ID
+   - Delete the student associated with the given ID and upon success returns a delete count of 1. 
+
+  * **URL**
+
+      `/students/:id`
+
+  * **Method:**
+
+      `DELETE`
+
+  *  **URL Params**
+
+     **Required:**
+
+      `id=[integer]`
+
+  * **Data Params**
+    None
+
+  * **Success Response:**
+
+    * **Code:** 200 <br />
+      **Content:** 
+      ```
+      {
+          "deletedRecords": 1
+      }
+      ```
+
+  * **Error Response:**
+
+
+
+  * **Sample Call Using Axios:**
+
+      ```javascript
+      axios({
+        method: "delete",
+        url: `${process.env.DB_URL}/appointments/1`,
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    ```
+  
   
