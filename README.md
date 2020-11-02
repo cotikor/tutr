@@ -5,7 +5,11 @@
 # Endpoints
 ## Appointments
   ### Get All Appointments
-  - Returns json data containing an array all of the tutor's upcoming appointments    including the subject being tutored, the date of the appointment, and student information.
+  - Returns json data containing an array all of the tutor's upcoming appointments    including:
+    - the subject being tutored
+    - the date of the appointment
+    - student information
+    - an array of notes associated with the student
 
   * **URL**
 
@@ -97,7 +101,11 @@
        ```
   ----
    ### Get Appointment By ID
-   - Returns json data information about a single appointment including the subject being tutored, the date of the appointment, and student information.
+   - Returns json data information about a single appointment including:
+      - the subject being tutored
+      - the date of the appointment
+      - student information
+      - an array of notes associated with the student
 
   * **URL**
 
@@ -335,7 +343,12 @@
 ----
 ## Students
   ### Get All Students
-  - Returns json data containing an array all of the tutor's students including the ID of the student, the firstname, the lastname, the student's email, and the parent's email.
+   - Returns json data information about a all the tutor's students including:
+      - the ID
+      - firstname
+      - lastname
+      - student email
+      - parent email
 
   * **URL**
 
@@ -455,11 +468,18 @@
        ```
   ----
    ### Get Student By ID
-   - Returns json data information about a single student including the ID, firstname, lastname, student email, parent email, an array of session notes associated with the student, and an array of upcoming appointments.
+   - Returns json data information about a single student including:
+      - the ID
+      - firstname
+      - lastname
+      - student email
+      - parent email
+      - an array of session notes associated with the student
+      - an array of upcoming appointments
 
   * **URL**
 
-    `/student/:id`
+    `/students/:id`
 
   * **Method:**
 
@@ -535,7 +555,7 @@
         });
      ```
     ----
-   ### Add a New Studnet
+   ### Add a New Student
    - Adds a new student and returns the id of the created student 
 
   * **URL**
@@ -599,7 +619,7 @@
     ```
 
    ----
-   ### Update Appointment By ID
+   ### Update Student By ID
    - Updates the student associated with the given ID and upon success returns an updated count of 1. 
 
   * **URL**
@@ -646,7 +666,7 @@
       ```javascript
       axios({
         method: "put",
-        url: `${process.env.DB_URL}/appointments/1`,
+        url: `${process.env.DB_URL}/notes/1`,
         data: {
           "student_email": "jillsmith1990@email.com"
         }
@@ -659,7 +679,7 @@
         });
     ```
      ----
-   ### Delete Appointment By ID
+   ### Delete Student By ID
    - Delete the student associated with the given ID and upon success returns a delete count of 1. 
 
   * **URL**
@@ -698,7 +718,7 @@
       ```javascript
       axios({
         method: "delete",
-        url: `${process.env.DB_URL}/appointments/1`,
+        url: `${process.env.DB_URL}/students/1`,
       })
         .then((res) => {
           console.log(res);
@@ -707,5 +727,315 @@
           console.log(err);
         });
     ```
-  
+----
+## Notes
+  ### Get All Notes
+  - Returns json data containing an array all of the tutor's summary notes including:
+    - the ID of the note
+    - student information
+    - details of the note
+    - date the note was last updated
+
+  * **URL**
+
+    `/notes`
+
+  * **Method:**
+
+    `GET`
+
+  *  **URL Params**
+
+     **Required:**
+
+     None
+
+  * **Data Params**
+
+    None
+
+  * **Success Response:**
+
+    * **Code:** 200 <br />
+      **Content:** 
+      ```
+        {
+          "notes": [
+              {
+                  "id": 1,
+                  "student": {
+                      "name": "Isabell Borer",
+                      "student_id": 1
+                  },
+                  "details": "Deleniti reprehenderit ut sunt sit qui nam voluptatem ratione qui dolores quasi laborum praesentium nemo voluptatibus natus commodi ratione aut id iste ut quasi voluptas incidunt nobis consequatur velit ut laborum illum animi iste fugit itaque qui nisi eum nihil officiis aut provident repudiandae laboriosam adipisci ipsam numquam excepturi nisi.",
+                  "updated_at": "11/2/2020, 2:51 PM"
+              },
+              {
+                  "id": 2,
+                  "student": {
+                      "name": "Keaton Rice",
+                      "student_id": 6
+                  },
+                  "details": "Ut similique est nulla quo id inventore numquam consequatur modi non a corporis at repudiandae cum doloremque nihil molestias autem vel quod saepe dolores minima et et sunt accusamus qui iusto rem explicabo voluptatem ex pariatur nesciunt natus neque eius in repudiandae est officia temporibus consequatur vero veritatis eius ratione.",
+                  "updated_at": "11/2/2020, 2:51 PM"
+              },
+              {
+                  "id": 3,
+                  "student": {
+                      "name": "Rhiannon Stoltenberg",
+                      "student_id": 7
+                  },
+                  "details": "Accusantium maxime nemo assumenda quia dolores sapiente sint quas ut iure aspernatur cupiditate at non voluptas necessitatibus natus qui quis in nihil sint enim modi voluptatum temporibus sapiente est sint vel amet mollitia et unde debitis magni vel quod suscipit maiores voluptatibus voluptatem modi adipisci qui aperiam totam quod distinctio.",
+                  "updated_at": "11/2/2020, 2:51 PM"
+              },
+              ]
+        }
+      ```
+  * **Error Response:**
+
+
+
+  * **Sample Call Using Axios:**
+
+      ```javascript
+        axios({
+          method: "get",
+          url: `${process.env.DB_URL}/notes`,
+        })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+       ```
+  ----
+  ### Get Note By ID
+  - Returns json data information about a single note including:
+    - the note ID
+    - information about the associated student
+    - details of the note
+    - date the note was last updated
+
+  * **URL**
+
+    `/notes/:id`
+
+  * **Method:**
+
+    `GET`
+
+  *  **URL Params**
+
+     **Required:**
+
+      `id=[integer]`
+
+  * **Data Params**
+
+    None
+
+  * **Success Response:**
+
+    * **Code:** 200 <br />
+      **Content:** 
+      ```
+        {
+          "note": {
+              "id": 1,
+              "student": {
+                  "name": "Isabell Borer",
+                  "student_id": 1
+              },
+              "details": "Deleniti reprehenderit ut sunt sit qui nam voluptatem ratione qui dolores quasi laborum praesentium nemo voluptatibus natus commodi ratione aut id iste ut quasi voluptas incidunt nobis consequatur velit ut laborum illum animi iste fugit itaque qui nisi eum nihil officiis aut provident repudiandae laboriosam adipisci ipsam numquam excepturi nisi.",
+              "updated_at": "11/2/2020, 2:51 PM"
+          }
+        }
+      ```
+
+  * **Error Response:**
+
+
+
+  * **Sample Call Using Axios:**
+
+     ```javascript
+      axios({
+        method: "get",
+        url: `${process.env.DB_URL}/notes/1`,
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+     ```
+    ----
+   ### Add a New Note
+   - Adds a new note and returns the id of the created note 
+
+  * **URL**
+
+      `/notes`
+
+  * **Method:**
+
+      `POST`
+
+  *  **URL Params**
+
+     **Required:**
+
+      none
+
+  * **Data Params**
+
+      ```
+      {
+          student_id = [integer],
+          details = [string]  
+      }
+      ```
+
+  * **Success Response:**
+
+    * **Code:** 200 <br />
+      **Content:** 
+      ```
+        {
+            "newNoteID": 101
+        }
+      ```
+
+  * **Error Response:**
+
+
+
+  * **Sample Call Using Axios:**
+
+      ```javascript
+      axios({
+        method: "POST",
+        url: `${process.env.DB_URL}/notes`,
+        data: {
+            "student_id": 5,
+            "details": "Student completed homework assignment for limits unit. He struggled to understand the concept at first, but by the end of the session seemed to grasp the material. Should follow up with a review next session."
+        }
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    ```
+
+   ----
+   ### Update Note By ID
+   - Updates the note associated with the given ID and upon success returns an updated count of 1. 
+
+  * **URL**
+
+      `/notes/:id`
+
+  * **Method:**
+
+      `PUT`
+
+  *  **URL Params**
+
+     **Required:**
+
+      `id=[integer]`
+
+  * **Data Params**
+
+      ```
+      {
+          student_id = [integer],
+          details = [string]  
+      }
+      ```
+
+  * **Success Response:**
+
+    * **Code:** 200 <br />
+      **Content:** 
+      ```
+      {
+          "updatedRecords": 1
+      }
+      ```
+
+  * **Error Response:**
+
+
+
+  * **Sample Call Using Axios:**
+
+      ```javascript
+      axios({
+        method: "put",
+        url: `${process.env.DB_URL}/notes/1`,
+        data: {
+            "details": "Student completed homework assignment for limits unit. He struggled to understand the concept at first, but by the end of the session seemed to grasp the material. Should follow up with a review next session. Also, student should focus on the difference between overall limit vs left limit and right limit"
+        }
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    ```
+     ----
+   ### Delete Note By ID
+   - Delete the note associated with the given ID and upon success returns a delete count of 1. 
+
+  * **URL**
+
+      `/notes/:id`
+
+  * **Method:**
+
+      `DELETE`
+
+  *  **URL Params**
+
+     **Required:**
+
+      `id=[integer]`
+
+  * **Data Params**
+    None
+
+  * **Success Response:**
+
+    * **Code:** 200 <br />
+      **Content:** 
+      ```
+      {
+          "deletedRecords": 1
+      }
+      ```
+
+  * **Error Response:**
+
+
+
+  * **Sample Call Using Axios:**
+
+      ```javascript
+      axios({
+        method: "delete",
+        url: `${process.env.DB_URL}/notes/1`,
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    ```  
   
