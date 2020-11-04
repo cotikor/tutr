@@ -35,7 +35,7 @@ function errorHandler(error, req, res, next) {
         message: "You are not authorized to view this content.",
       });
     default:
-      res.json({ status: error, message: error.message });
+      res.json({ statusCode: error, message: error.message });
   }
   next();
 }
